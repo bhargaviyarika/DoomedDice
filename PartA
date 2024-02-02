@@ -1,0 +1,42 @@
+public class DoomedDiceChallenge {
+
+    public static void main(String[] args) {
+        int totalCombinations = 6 * 6;
+        System.out.println("Total Combinations: " + totalCombinations);
+
+        int[][] distributionMatrix = new int[6][6];
+
+        for (int i = 1; i <= 6; i++) {
+            for (int j = 1; j <= 6; j++) {
+                distributionMatrix[i - 1][j - 1] = i + j;
+            }
+        }
+
+        System.out.println("Distribution Matrix:");
+        for (int[] row : distributionMatrix) {
+            for (int value : row) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+
+        double[] probabilities = new double[11];
+
+        for (int i = 1; i <= 6; i++) {
+            for (int j = 1; j <= 6; j++) {
+                int sumValue = i + j;
+                probabilities[sumValue - 2]++;
+            }
+        }
+
+        int totalCombinations2 = 6 * 6;
+        for (int i = 0; i < probabilities.length; i++) {
+            probabilities[i] /= totalCombinations2;
+        }
+
+        System.out.println("Probabilities of Sums:");
+        for (int i = 0; i < probabilities.length; i++) {
+            System.out.printf("P(Sum = %d) = %.2f\n", i + 2, probabilities[i]);
+        }
+    }
+}
