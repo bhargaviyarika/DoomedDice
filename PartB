@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public class DoomedDiceChallenge {
+
+    public static void main(String[] args) {
+        int[] originalDieA = {1, 2, 3, 4, 5, 6};
+        int[] originalDieB = Arrays.copyOf(originalDieA, originalDieA.length);
+        
+        int[] newDieA = undoomDice(originalDieA, originalDieB);
+        System.out.println("Original Die A: " + Arrays.toString(originalDieA));
+        System.out.println("Original Die B: " + Arrays.toString(originalDieB));
+        System.out.println("New Die A: " + Arrays.toString(newDieA));
+    }
+    private static int[] undoomDice(int[] dieA, int[] dieB) {
+        int[] newDieA = Arrays.copyOf(dieA, dieA.length);
+        int[] newDieB = Arrays.copyOf(dieB, dieB.length);
+
+        for (int i = 0; i < newDieA.length; i++) {
+            if (newDieA[i] > 4) {
+                newDieA[i] = 4;
+            }
+        }
+        return newDieA;
+    }
+}
